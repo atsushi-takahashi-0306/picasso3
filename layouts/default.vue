@@ -1,117 +1,132 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
+  <v-app>
+    <v-card class="overflow-hidden">
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        temporary
+        dark
+        disable-route-watcher
+      >
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="title"> Menu </v-list-item-title>
+          </v-list-item-content>
+          <v-list-item-content class="ml-2">
+            <nuxt-link to="/"><v-icon>mdi-home</v-icon></nuxt-link>
+          </v-list-item-content>
+          <v-list-item-content class="pl-14">
+            <v-icon @click="drawer = !drawer" class="pl-6">mdi-window-close</v-icon>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
+
+        <v-divider></v-divider>
+
+        <v-list dense nav>
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link
+            :to="item.title.toLowerCase()"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+
+      <v-app-bar
+        app
+        absolute
+        color="#fcb69f"
+        dark
+        shrink-on-scroll
+        src="https://picsum.photos/1920/1080?random"
+        scroll-target="#scrolling-techniques-2"
       >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
+        <template v-slot:img="{ props }">
+          <v-img
+            v-bind="props"
+            gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          ></v-img>
+        </template>
+
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+        <nuxt-link to="/"
+          ><v-toolbar-title class="white--text"
+            >picasso</v-toolbar-title
+          ></nuxt-link
+        >
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon nuxt to="/login">
+          <v-icon>mdi-account-outline</v-icon>
+        </v-btn>
+        <v-btn icon nuxt to="/favorites">
+          <v-icon>mdi-heart-outline</v-icon>
+        </v-btn>
+        <v-btn icon nuxt to="/cart">
+          <v-icon>mdi-cart-outline</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-sheet
+        id="scrolling-techniques-2"
+        class="overflow-y-auto"
+        max-height="600"
       >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-main>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+        <v-container style="height: 1000px">
+          <v-main>
+            <nuxt />
+          </v-main>
+        </v-container>
+      </v-sheet>
+    </v-card>
+
+    <v-footer :absolute="!fixed" app>
+      <span>&copy; {{ new Date().getFullYear() }} picasso</span>
     </v-footer>
   </v-app>
 </template>
 
+
+
 <script>
-export default {
-  data () {
+import Vue from "vue";
+
+export default{
+  data: function () {
     return {
-      clipped: false,
       drawer: false,
-      fixed: false,
       items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
+        { title: "Bags", icon: "mdi-purse-outline" },
+        { title: "T-shirts", icon: "mdi-tshirt-crew-outline" },
+        { title: "Hats", icon: "mdi-redhat" },
+        { title: "Accessories", icon: "mdi-diamond-stone" },
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
-    }
-  }
-}
+      right: null,
+    };
+  },
+};
 </script>
+
+ <style>
+html {
+  overflow: hidden !important;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+</style>
