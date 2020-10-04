@@ -1,5 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
+require('dotenv').config();
+const { FB_API_KEY,FB_AUTH_DOMAIN,FB_DATABASE_URL,FB_PROJECT_ID,FB_STORAGE_BUCKET,FB_MESSAGE_SENDER_ID,FB_APPID } = process.env;
+
 export default {
   /*
   ** Nuxt rendering mode
@@ -38,6 +41,8 @@ export default {
   */
   plugins: [
   ],
+
+  buildModules: ['@nuxtjs/dotenv'],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -87,5 +92,8 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+  env: {
+    FB_API_KEY,FB_AUTH_DOMAIN,FB_DATABASE_URL,FB_PROJECT_ID,FB_STORAGE_BUCKET,FB_MESSAGE_SENDER_ID,FB_APPID
   }
 }

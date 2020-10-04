@@ -10,7 +10,7 @@
       >
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="title"> Menu </v-list-item-title>
+            <v-list-item-title class="title">Menu</v-list-item-title>
           </v-list-item-content>
           <v-list-item-content class="ml-2">
             <nuxt-link to="/"><v-icon>mdi-home</v-icon></nuxt-link>
@@ -88,7 +88,7 @@
       </v-sheet>
     </v-card>
 
-    <v-footer :absolute="!fixed" app>
+    <v-footer app>
       <span>&copy; {{ new Date().getFullYear() }} picasso</span>
     </v-footer>
   </v-app>
