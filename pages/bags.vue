@@ -6,7 +6,7 @@
       <li v-for="item in items">
         {{ item.name }}
         {{ item.price }}円
-        <img :src= item.imageurl />
+        <img :src="item.imageurl" />
       </li>
     </ul>
   </div>
@@ -19,6 +19,11 @@ const db = firebase.firestore();
 const storage = firebase.storage();
 
 export default {
+  head() {
+    return {
+      title: "picasso  |  bags",
+    };
+  },
   data() {
     return {
       items: [],

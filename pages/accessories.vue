@@ -7,22 +7,27 @@
 
 
 <script>
-import 'firebase/storage';
+import "firebase/storage";
 import firebase from "~/plugins/firebase";
 const db = firebase.firestore();
 
-export default{
-mounted(){
-  db.collection("accessories")
-    .get()
-    .then((querySnapshot) => {
-      let result = "";
-      querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        result +=  data.name +"//"+ data.price+"円"+data.imageurl;  
+export default {
+  head() {
+    return {
+      title: "picasso  |  accessories",
+    };
+  },
+  mounted() {
+    db.collection("accessories")
+      .get()
+      .then((querySnapshot) => {
+        let result = "";
+        querySnapshot.forEach((doc) => {
+          let data = doc.data();
+          result += data.name + "//" + data.price + "円" + data.imageurl;
+        });
+        document.querySelector("#list").innerHTML = result;
       });
-      document.querySelector("#list").innerHTML = result;
-      });
-    }
-}
+  },
+};
 </script>

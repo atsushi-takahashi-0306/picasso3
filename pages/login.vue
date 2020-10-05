@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div>
-          <h1>login page</h1>
+        <h1>login page</h1>
         <Auth />
       </div>
     </div>
@@ -12,11 +12,14 @@
 <script>
 import Auth from "~/components/Auth.vue";
 
-
-
 export default {
+  head() {
+    return {
+      title: "picasso  |  login",
+    };
+  },
   components: {
-    Auth
+    Auth,
   },
 };
 </script>
