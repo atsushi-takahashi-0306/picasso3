@@ -58,7 +58,7 @@ export default {
     firebase.initializeApp(firebaseConfig);
 }
 
-    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
 
     firebase.auth().onAuthStateChanged(user => {

@@ -1,14 +1,28 @@
 <template>
   <div>
-    <h1 style="text-align:center;">hats page</h1>
+    <h1 style="text-align: center">hats page</h1>
+    <div id="list"></div>
   </div>
 </template>
 
+
 <script>
-import Vue from "vue";
+import 'firebase/storage';
+import firebase from "~/plugins/firebase";
+const db = firebase.firestore();
 
 export default{
-  
-};
+mounted(){
+  db.collection("hats")
+    .get()
+    .then((querySnapshot) => {
+      let result = "";
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        result +=  data.name +"//"+ data.price+"円"+data.imageurl;  
+      });
+      document.querySelector("#list").innerHTML = result;
+      });
+    }
+}
 </script>
-

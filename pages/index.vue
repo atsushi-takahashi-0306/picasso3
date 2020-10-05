@@ -1,34 +1,28 @@
 <template>
-<div>
-    <v-card class="mx-auto" max-width="344">
-        <v-row justify="center">
-            <!-- <v-img src="/images/bag.jpg" height="200px" width="200px"> -->
-                <template v-slot:placeholder>
-                    <v-row class="fill-height ma-0" align="center" justify="center">
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                    </v-row>
-                </template>
-            </v-img>
-        </v-row>
-
-        <v-card-title> Tote Bag </v-card-title>
-
-        <v-card-subtitle> ¥9,600 </v-card-subtitle>
-
-        <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-icon class="mr-3">mdi-magnify-plus-outline</v-icon>
-            <v-icon class="mr-3">mdi-heart-outline</v-icon>
-            <v-icon class="mr-3">mdi-cart-outline</v-icon>
-        </v-card-actions>
-    </v-card>
-</div>
+  <div>
+    <h1 style="text-align: center">home page</h1>
+    <div id="list"></div>
+ 
+  </div>
 </template>
 
-<script>
-import Vue from "vue";
 
-export default {
-    components:{}
-};
+<script>
+import firebase from "~/plugins/firebase";
+const db = firebase.firestore();
+
+export default{
+mounted(){
+  db.collection("bags")
+    .get()
+    .then((querySnapshot) => {
+      let result = "";
+      querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        result +=  data.name +"//"+ data.price+"円"+data.imageurl
+      });
+      document.querySelector("#list").innerHTML = result;
+      });
+    }
+}
 </script>
