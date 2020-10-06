@@ -1,33 +1,25 @@
 <template>
-  <div>
-    <h1 style="text-align: center">hats page</h1>
-    <div id="list"></div>
+  <div class="home">
+    <ul>
+      <li v-for="item in $store.state.item.items" :key="item.id">
+        <nuxt-link :to="{ name: 'item-id', params: { id: item.id} }">
+          <div class="item">
+            <img :src="item.url">
+            <div class="item-info">
+              <p>{{ item.title }}</p>
+              <span>¥{{ item.price | format-price }}</span>
+            </div>
+          </div>
+        </nuxt-link>
+      </li>
+    </ul>
   </div>
 </template>
 
-
 <script>
-import "firebase/storage";
-import firebase from "~/plugins/firebase";
-const db = firebase.firestore();
-
 export default {
-  head() {
-    return {
-      title: "picasso  |  hats",
-    };
-  },
-  mounted() {
-    db.collection("hats")
-      .get()
-      .then((querySnapshot) => {
-        let result = "";
-        querySnapshot.forEach((doc) => {
-          let data = doc.data();
-          result += data.name + "//" + data.price + "円" + data.imageurl;
-        });
-        document.querySelector("#list").innerHTML = result;
-      });
-  },
-};
+  created () {
+    this.$store.dispatch('item/init')
+  }
+}
 </script>

@@ -1,46 +1,26 @@
 <template>
   <div>
-    <h1 style="text-align: center">bags page</h1>
-    <div id="list"></div>
-    <ul id="example-1">
-      <li v-for="item in items">
-        {{ item.name }}
-        {{ item.price }}円
-        <img :src="item.imageurl" />
-      </li>
-    </ul>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags1.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags2.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags3.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags4.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags5.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags6.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags7.jpg" width="200px" height="200px"></nuxt-link>
+    <nuxt-link to="/"><img src="~/static/images/bags/bags8.jpg" width="200px" height="200px"></nuxt-link>
   </div>
 </template>
 
-<script>
-import firebase from "~/plugins/firebase";
-import "firebase/storage";
-const db = firebase.firestore();
-const storage = firebase.storage();
 
+<script>
 export default {
   head() {
     return {
       title: "picasso  |  bags",
     };
   },
-  data() {
-    return {
-      items: [],
-    };
-  },
-  created() {
-    db.collection("bags")
-      .get()
-      .then((querySnapshot) => {
-        this.items = querySnapshot.docs.map((doc) => doc.data());
-      });
-  },
 };
 </script>
 
 <style>
-ul {
-  list-style-type: none;
-}
 </style>

@@ -106,8 +106,6 @@ export default{
       items: [
         { title: "Bags", icon: "mdi-purse-outline" },
         { title: "T-shirts", icon: "mdi-tshirt-crew-outline" },
-        { title: "Hats", icon: "mdi-redhat" },
-        { title: "Accessories", icon: "mdi-diamond-stone" },
       ],
       right: null,
     };
