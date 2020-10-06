@@ -1,7 +1,18 @@
 <template>
-   <div>
-    <h1>home</h1>
-   
+    <div>
+    <ul>
+      <li v-for="item in $store.state.item.items" :key="item.id">
+        <nuxt-link :to="{ name: 'bag-id', params: { id: item.id} }">
+          <div>
+            <img :src="item.url" width="150px" height="150px">
+            <div>
+              <p>{{ item.name }}</p>
+              <span>¥{{ item.price }}</span>
+            </div>
+          </div>
+        </nuxt-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -14,6 +25,16 @@ export default {
       title: "picasso  |  home",
     };
   },
+   created () {
+    this.$store.dispatch('item/init')
+  }
 };
 </script>
+
+<style>
+ul{
+  list-style-type: none;
+}
+  
+</style>
 
