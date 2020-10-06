@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h1 style="text-align: center">home</h1>
+   <div>
+    <h1>home</h1>
+   
   </div>
 </template>
 
@@ -15,3 +16,4 @@ export default {
   },
 };
 </script>
+
