@@ -7,7 +7,7 @@
             <img :src="item.url" width="150px" height="150px">
             <div>
               <p>{{ item.name }}</p>
-              <span>¥{{ item.price }}</span>
+              <span>¥{{ Number(item.price) | addComma }}</span>
             </div>
           </div>
         </nuxt-link>

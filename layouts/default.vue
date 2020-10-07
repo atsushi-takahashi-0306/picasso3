@@ -70,6 +70,7 @@
         </v-btn>
         <v-btn icon nuxt to="/cart">
           <v-icon>mdi-cart-outline</v-icon>
+          <span>{{ $store.state.cart.cart.length }}</span>
         </v-btn>
       </v-app-bar>
       <v-sheet

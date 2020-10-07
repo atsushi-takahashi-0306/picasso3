@@ -42,6 +42,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~/plugins/filter.js',
   ],
 
   buildModules: ['@nuxtjs/dotenv'],
