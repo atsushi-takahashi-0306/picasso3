@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul v-if="$store.state.cart.cart.length">
-      <li v-for="(item, index) in $store.state.cart.cart" :key="item.id">
+      <li v-for="(item, index) in $store.state.cart.cart" :key="index">
         <div>
           <img :src="item.url" width="150px" height="150px" />
           <div>

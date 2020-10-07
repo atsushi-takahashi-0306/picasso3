@@ -42,6 +42,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/localStorage.js', ssr: false },
     '~/plugins/filter.js',
   ],
 
