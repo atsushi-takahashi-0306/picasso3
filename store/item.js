@@ -49,4 +49,19 @@ export const actions = {
             commit('showInit', item)
         })
     },
+    remove: firestoreAction((context, id) => {
+        if (confirm('削除してもよろしいですか？')) {
+          db.doc(id).delete().then(function() {
+            console.log("Document successfully deleted!");
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+        
+        }
+      }),
+    update: firestoreAction((context, id) => {
+        if (confirm('編集してもよろしいですか？')) {
+            db.doc(id).set({})
+        }
+      }),
 }

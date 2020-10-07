@@ -68,9 +68,6 @@
         <v-btn icon nuxt to="/login">
           <v-icon>mdi-account-outline</v-icon>
         </v-btn>
-        <v-btn icon nuxt to="/favorites">
-          <v-icon>mdi-heart-outline</v-icon>
-        </v-btn>
         <v-btn icon nuxt to="/cart">
           <v-icon>mdi-cart-outline</v-icon>
         </v-btn>
