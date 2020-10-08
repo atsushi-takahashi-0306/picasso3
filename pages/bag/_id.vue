@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="showItem.url" width="150px" height="150px" />
+    <img :src="showItem.url" width="680px" />
     <div>
       <h3>{{ showItem.name }}</h3>
       <p>¥{{ Number(showItem.price) | addComma }}</p>

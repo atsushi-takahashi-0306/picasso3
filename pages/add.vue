@@ -9,7 +9,6 @@
               <v-text-field v-model="item.price" label="価格" />
               <v-file-input v-model="item.img" label="画像" />
               <v-btn
-                :color="this.$vuetify.theme.themes.dark.info"
                 @click="submit"
               >
                 保存

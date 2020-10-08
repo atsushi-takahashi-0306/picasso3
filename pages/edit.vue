@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ul>
+    <ul v-if="$store.state.item.items.length">
       <li v-for="item in $store.state.item.items" :key="item.id">
         <div>
-          <img :src="item.url" width="150px" height="150px" />
+          <img :src="item.url" width="350px" />
           商品名:
           <input type="text" :value=item.name>
           価格:  ¥
@@ -17,6 +17,8 @@
         </div>
       </li>
     </ul>
+
+    <p v-else>編集する商品はありません。</p>
   </div>
 </template>
 
