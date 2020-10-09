@@ -1,16 +1,12 @@
 <template>
     <div>
-    <ul>
-      <li v-for="item in $store.state.item.items" :key="item.id">
+    <ul class="grid">
+      <li v-for="item in $store.state.item.items" :key="item.id" >
         <nuxt-link :to="{ name: 'bag-id', params: { id: item.id} }">
-          <div>
-            <img :src="item.url" width="350px">
-            <div>
-              <p>{{ item.name }}</p>
-              <span>¥{{ Number(item.price) | addComma }}</span>
-            </div>
-          </div>
+            <img :src="item.url" width="230px" class="opacity">
         </nuxt-link>
+              <p>{{ item.name }}</p>
+              <p>¥{{ Number(item.price) | addComma }}</p>
       </li>
     </ul>
   </div>
@@ -31,10 +27,22 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 ul{
   list-style-type: none;
 }
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:15px;
+}
+.opacity:hover{
+  opacity:0.75;
+
+}
+
+
+
   
 </style>
 

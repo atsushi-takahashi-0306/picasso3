@@ -1,18 +1,19 @@
 <template>
   <div>
-    <img :src="showItem.url" width="680px" />
+    <img :src="showItem.url" width="350px" />
     <div>
       <h3>{{ showItem.name }}</h3>
       <p>¥{{ Number(showItem.price) | addComma }}</p>
     </div>
 
-    <div>
+  <v-row align="center" justify="space-around">
+      <nuxt-link to="/">
+        <v-btn @click="addCart"> 戻る </v-btn>
+      </nuxt-link>
       <v-btn @click="addCart">
         <span>カートに追加</span>
       </v-btn>
-    </div>
-
-    <nuxt-link to="/">戻る</nuxt-link>
+   </v-row>
   </div>
 </template>
 

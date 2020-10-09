@@ -3,7 +3,7 @@
     <ul v-if="$store.state.cart.cart.length">
       <li v-for="(item, index) in $store.state.cart.cart" :key="index">
         <div>
-          <img :src="item.url" width="350px" />
+          <img :src="item.url" width="230px" />
           <div>
             <p>{{ item.name}}</p>
             <v-btn @click="removeCart(index)"> 削除する </v-btn>
@@ -70,3 +70,6 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+</style>

@@ -58,10 +58,10 @@
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
         <nuxt-link to="/"
-          ><v-toolbar-title class="white--text"
+          ><v-toolbar-title class="white--text" style="font-size:30px;"
             >picasso</v-toolbar-title
-          ></nuxt-link
-        >
+          ></nuxt-link >
+       
 
         <v-spacer></v-spacer>
 
