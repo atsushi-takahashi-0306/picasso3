@@ -28,14 +28,15 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '~/static/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' }
     ]
   },
   /*
   ** Global CSS
   */
   css: [
-    'sanitize.css'
+    'sanitize.css',
+    '@/assets/css/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -43,6 +44,7 @@ export default {
   */
   plugins: [
     { src: '~/plugins/localStorage.js', ssr: false },
+    { src: "~plugins/lazyload.js" },
     '~/plugins/filter.js',
   ],
 

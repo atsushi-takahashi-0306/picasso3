@@ -3,33 +3,19 @@
     <ul v-if="$store.state.cart.cart.length">
       <li v-for="(item, index) in $store.state.cart.cart" :key="index">
         <div>
-          <img :src="item.url" width="230px" />
+          <img v-lazy="item.url" width="230px" />
           <div>
             <p>{{ item.name}}</p>
             <v-btn @click="removeCart(index)"> 削除する </v-btn>
-            <span>¥{{ item.price }}</span>
+            <span class="price-txt">¥{{ item.price }}</span>
           </div>
         </div>
       </li>
       <div class="buy-info">
         <p>小計({{ $store.state.cart.cart.length }}点): </p>
-        <p>¥{{Number(totalPrice) | addComma}}</p>
-        <v-btn @click.stop="dialog = true"> 購入する </v-btn>
+        <span class="price-txt">¥{{Number(totalPrice) | addComma}}</span>
+        <v-btn nuxt to="/checkout"> 購入する </v-btn>
       </div>
-
-      <v-app class="dialog">
-        <v-dialog v-model="dialog" max-width="350">
-          <v-card>
-            <v-card-title class="headline"
-              >カートの商品を購入しても<br />よろしいですか？</v-card-title
-            >
-            <v-card-actions>
-              <v-btn @click="dialog = false"> キャンセル </v-btn>
-              <v-btn> 購入する </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-app>
     </ul>
 
     <p v-else>
@@ -49,11 +35,6 @@ export default {
       title: "picasso  |  cart",
     };
   },
-  data() {
-    return {
-      dialog: false,
-    };
-  },
   computed: {
     totalPrice() {
       let total = 0;
@@ -71,5 +52,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
 </style>

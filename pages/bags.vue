@@ -3,7 +3,7 @@
     <ul class="grid">
       <li v-for="item in $store.state.item.items" :key="item.id" >
         <nuxt-link :to="{ name: 'bag-id', params: { id: item.id} }">
-            <img :src="item.url" width="230px" class="opacity">
+            <img v-lazy="item.url" width="230px" class="opacity">
         </nuxt-link>
               <p>{{ item.name }}</p>
               <p>¥{{ Number(item.price) | addComma }}</p>
@@ -27,10 +27,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-ul{
-  list-style-type: none;
-}
+<style lang="scss" scoped>
+
 .grid{
   display:grid;
   grid-template-columns: repeat(4,1fr);
@@ -38,10 +36,11 @@ ul{
 }
 .opacity:hover{
   opacity:0.75;
-
+}
+.price-txt{
+    font-weight: 300;
+    font-size:14px;
 }
 
 
-
-  
 </style>

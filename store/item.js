@@ -54,7 +54,11 @@ export const actions = {
           db.doc(id).delete().then(function() {
             console.log("Document successfully deleted!");
         }).catch(function(error) {
-            console.error("Error removing document: ", error);
+            console.error("Error removing document: ", error)
+                .then(function (id) {
+                    
+                
+            })
         });
         
         }

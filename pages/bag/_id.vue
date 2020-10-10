@@ -1,19 +1,34 @@
 <template>
-  <div>
-    <img :src="showItem.url" width="350px" />
+  <div class="flex">
     <div>
-      <h3>{{ showItem.name }}</h3>
-      <p>¥{{ Number(showItem.price) | addComma }}</p>
+      <v-carousel>
+        <v-carousel-item>
+          <img v-lazy="showItem.url" width="250px" style="margin-left: 25px" />
+        </v-carousel-item>
+        <v-carousel-item>
+          <img v-lazy="showItem.url" width="250px" style="margin-left: 25px" />
+        </v-carousel-item>
+        <v-carousel-item>
+          <img v-lazy="showItem.url" width="250px" style="margin-left: 25px" />
+        </v-carousel-item>
+      </v-carousel>
+    </div>
+    <div class="main-img">
+      <img v-lazy="showItem.url" width="430px" />
     </div>
 
-  <v-row align="center" justify="space-around">
-      <nuxt-link to="/">
-        <v-btn @click="addCart"> 戻る </v-btn>
-      </nuxt-link>
-      <v-btn @click="addCart">
-        <span>カートに追加</span>
-      </v-btn>
-   </v-row>
+    <div class="item-meta">
+      <p class="name-txt">{{ showItem.name }}</p>
+      <p class="price-txt">¥{{ Number(showItem.price) | addComma }}</p>
+      <div class="two-btn">
+        <nuxt-link to="/">
+          <v-btn @click="addCart" class="back-btn"> 戻る </v-btn>
+        </nuxt-link>
+        <v-btn @click="addCart">
+          <span>カートに追加</span>
+        </v-btn>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,7 +53,34 @@ export default {
         url: this.$store.state.item.item.url,
       };
       this.$store.dispatch("cart/addCart", item);
+      this.$router.push({ name: "cart" });
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.name-txt {
+  font-size: 50px;
+  margin-bottom: 0;
+}
+.price-txt {
+  font-weight: 300;
+  font-size: 20px;
+}
+.flex {
+  display: flex;
+}
+.main-img {
+  margin-left: 120px;
+}
+.item-meta {
+  margin-top: 200px;
+}
+.two-btn{
+  margin-top: 30px;
+}
+.back-btn{
+  margin-right: 8px;
+}
+</style>
