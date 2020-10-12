@@ -25,7 +25,7 @@ export const state = () => ({
   
   export const getters = {
     isLogin: state => {
-      return !!state.email;
+      return state.email;
     },
     displayName: state => {
       return state.displayName;

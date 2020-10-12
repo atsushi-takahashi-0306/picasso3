@@ -1,6 +1,6 @@
 <template>
   <center>
-    <div>
+    <div class="container">
       <v-flex xs5 mt-5>
         <v-card>
           <v-card-text>

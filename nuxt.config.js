@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 require('dotenv').config();
-const { FB_API_KEY,FB_AUTH_DOMAIN,FB_DATABASE_URL,FB_PROJECT_ID,FB_STORAGE_BUCKET,FB_MESSAGE_SENDER_ID,FB_APPID } = process.env;
+const { FB_API_KEY, FB_AUTH_DOMAIN, FB_DATABASE_URL, FB_PROJECT_ID, FB_STORAGE_BUCKET, FB_MESSAGE_SENDER_ID, FB_APPID } = process.env;
+
 
 export default {
   /*
@@ -21,14 +22,14 @@ export default {
   head: {
     // titleTemplate: '%s - ' + process.env.npm_package_name,
     // title: process.env.npm_package_name || '',
-    title:"title",
+    title: "title",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '~/static/favicon.ico' }
     ]
   },
   /*
@@ -91,8 +92,9 @@ export default {
           success: colors.green.accent3
         }
       }
-    }
+    },
   },
+
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
@@ -100,6 +102,7 @@ export default {
   build: {
   },
   env: {
-    FB_API_KEY,FB_AUTH_DOMAIN,FB_DATABASE_URL,FB_PROJECT_ID,FB_STORAGE_BUCKET,FB_MESSAGE_SENDER_ID,FB_APPID
-  }
+    FB_API_KEY, FB_AUTH_DOMAIN, FB_DATABASE_URL, FB_PROJECT_ID, FB_STORAGE_BUCKET, FB_MESSAGE_SENDER_ID, FB_APPID
+  },
 }
+

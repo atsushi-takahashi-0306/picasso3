@@ -48,7 +48,6 @@
       shrink-on-scroll
       src="https://picsum.photos/1920/1080?random"
       scroll-target="#scrolling-techniques-2"
-   
       elevation="4"
       class="mr-4"
     >
@@ -68,11 +67,12 @@
       >
 
       <v-spacer></v-spacer>
-
-      <v-btn icon nuxt to="/login">
-        <v-icon>mdi-account-outline</v-icon>
+      <v-btn icon nuxt to="/login" class="mr-3">
+        <v-badge v-model="isLogin" dot color="red" overlap >
+          <v-icon>mdi-account-outline</v-icon>
+        </v-badge>
       </v-btn>
-      <v-btn icon nuxt to="/cart">
+      <v-btn icon nuxt to="/cart" class="mr-3">
         <v-icon>mdi-cart-outline</v-icon>
         <span>{{ $store.state.cart.cart.length }}</span>
       </v-btn>
@@ -95,7 +95,6 @@
           ></v-col
         >
       </v-footer>
-      
     </v-sheet>
   </v-app>
 </template>
@@ -104,6 +103,7 @@
 
 <script>
 import Vue from "vue";
+import firebase from "~/plugins/firebase";
 
 export default {
   data: function () {
@@ -111,11 +111,21 @@ export default {
       drawer: false,
       items: [
         { title: "Bags", icon: "mdi-purse-outline" },
-        { title: "T-shirts", icon: "mdi-tshirt-crew-outline" },
       ],
       right: null,
     };
   },
+  computed: {
+    isLogin() {
+      return this.$store.getters["user/isLogin"];
+    },
+  },
+  mounted(){
+      firebase.auth().onAuthStateChanged((user) => {
+      this.$store.dispatch("user/login", user);
+    });
+  }
+
 };
 </script>
 

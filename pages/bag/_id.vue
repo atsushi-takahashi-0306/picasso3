@@ -22,8 +22,9 @@
       <p class="price-txt">¥{{ Number(showItem.price) | addComma }}</p>
       <div class="two-btn">
         <nuxt-link to="/">
-          <v-btn @click="addCart" class="back-btn"> 戻る </v-btn>
+          <v-btn class="back-btn"> 戻る </v-btn>
         </nuxt-link>
+   
         <v-btn @click="addCart">
           <span>カートに追加</span>
         </v-btn>
@@ -35,6 +36,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "picasso  |  bags",
+    };
+  },
   computed: {
     showItem() {
       return this.$store.state.item.item;
@@ -66,7 +72,7 @@ export default {
 }
 .price-txt {
   font-weight: 300;
-  font-size: 20px;
+  font-size: 19px;
 }
 .flex {
   display: flex;
@@ -81,6 +87,6 @@ export default {
   margin-top: 30px;
 }
 .back-btn{
-  margin-right: 8px;
+  margin-right: 5px;
 }
 </style>

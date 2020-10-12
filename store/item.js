@@ -33,7 +33,7 @@ export const actions = {
         db.add({
             name: payload.name,
             price: payload.price,
-            url: payload.url
+            url: payload.url,
         })
     }),
     init: firestoreAction(({ bindFirestoreRef }) => {

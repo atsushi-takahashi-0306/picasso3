@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div class="container">
-      <div>
-        <h1>login page</h1>
-        <Auth />
-      </div>
-    </div>
+    <center>
+      
+      <v-sheet color="white" elevation="3" height="400" width="310">
+        <div>
+          <p class="login-txt">Login</p>
+          <Auth />
+        </div>
+      </v-sheet>
+    </center>
   </div>
 </template>
 
@@ -43,4 +46,14 @@ export default {
   color: #35495e;
   letter-spacing: 1px;
 }
+.login-txt{
+  font-size:30px;
+  font-weight: 300;
+  padding-top: 15px;
+  margin-bottom: 70px;
+}
+
+
+
+
 </style>

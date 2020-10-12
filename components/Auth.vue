@@ -2,8 +2,11 @@
   <div>
     <div v-show="isLogin">
       <p class="login">ログイン中</p>
-      <p class="name">名前：{{ displayName }}</p>
-      <button @click="logout">ログアウト</button>
+      <p>メールアドレス：{{ isLogin }}</p>
+      <p class="name">お名前：{{ displayName }}</p>
+
+      <nuxt-link to="/"><v-btn class="back-btn">戻る</v-btn></nuxt-link>
+      <v-btn @click="logout">ログアウト</v-btn>
     </div>
     <div v-show="!isLogin" id="firebaseui-auth-container"></div>
   </div>
@@ -11,14 +14,16 @@
 
 
 <script>
+import firebase from "~/plugins/firebase";
+
 export default {
-   computed: {
+  computed: {
     isLogin() {
       return this.$store.getters["user/isLogin"];
     },
     displayName() {
       return this.$store.getters["user/displayName"];
-    }
+    },
   },
   methods: {
     logout() {
@@ -30,6 +35,9 @@ export default {
         .then(() => {
           console.log("ログアウトしました");
         });
+    },
+    or(){
+      var elements = document.getElementsByClassName();
     }
   },
   mounted() {
@@ -42,28 +50,29 @@ export default {
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      ]
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      ],
     };
-    const firebaseConfig = {
-      apiKey: process.env.FB_API_KEY,
-      authDomain: process.env.FB_AUTH_DOMAIN,
-      databaseURL: process.env.FB_DATABASE_URL,
-      projectId: process.env.FB_PROJECT_ID,
-      storageBucket: process.env.FB_STORAGE_BUCKET,
-      messagingSenderId: process.env.FB_MESSAGE_SENDER_ID
-    };
-    if (firebase.apps.length === 0) {
-    firebase.initializeApp(firebaseConfig);
-}
 
-    const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+    const ui =
+      firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
 
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       this.$store.dispatch("user/login", user);
     });
-  }
+  },
 };
 </script>
+
+<style lang="scss" scoped>
+.back-btn{
+  margin-right:5px;
+}
+.name{
+  margin-right:20px;
+  margin-bottom:60px;
+}
+</style>
