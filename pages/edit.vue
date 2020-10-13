@@ -1,19 +1,19 @@
 <template>
   <div class="container">
     <ul v-if="$store.state.item.items.length">
-      <hr>
+      <hr />
       <li v-for="item in $store.state.item.items" :key="item.id">
         <div>
           <img :src="item.url" width="130px" />
           商品名:
-          <input type="text" :value=item.name>
-          価格:  ¥
-          <input type="text" :value=item.price>
+          <input type="text" :value="item.name" />
+          価格: ¥
+          <input type="text" :value="item.price" />
           画像:
-          <input type="file" :value="item.img">
+          <input type="file" :value="item.img" />
           <v-btn @click="remove(item.id)"> 削除 </v-btn>
         </div>
-        <hr>
+        <hr />
       </li>
     </ul>
 
@@ -24,6 +24,11 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "picasso  |  edit",
+    };
+  },
   created() {
     this.$store.dispatch("item/init");
   },
@@ -36,5 +41,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>
