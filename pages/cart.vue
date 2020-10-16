@@ -131,6 +131,6 @@ export default {
 .cart-info {
   text-align: center;
   margin-top: 50px;
-  margin-bottom: 164px;
+  margin-bottom: 138px;
 }
 </style>

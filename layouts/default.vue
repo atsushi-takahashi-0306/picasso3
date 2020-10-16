@@ -68,7 +68,7 @@
 
       <v-spacer></v-spacer>
       <v-btn icon nuxt to="/login" class="mr-3">
-        <v-badge v-model="isLogin" dot color="red" overlap >
+        <v-badge v-model="isLogin" dot color="red" overlap>
           <v-icon>mdi-account-outline</v-icon>
         </v-badge>
       </v-btn>
@@ -109,23 +109,25 @@ export default {
   data: function () {
     return {
       drawer: false,
-      items: [
-        { title: "Bags", icon: "mdi-purse-outline" },
-      ],
+      items: [{ title: "Bags", icon: "mdi-purse-outline" }],
       right: null,
     };
   },
   computed: {
-    isLogin() {
-      return this.$store.getters["user/isLogin"];
+    isLogin: {
+      get: function () {
+        return this.$store.getters["user/isLogin"];
+      },
+      set: function (value) {
+        console.log("", value);
+      },
     },
   },
-  mounted(){
-      firebase.auth().onAuthStateChanged((user) => {
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
       this.$store.dispatch("user/login", user);
     });
-  }
-
+  },
 };
 </script>
 

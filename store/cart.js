@@ -1,9 +1,9 @@
 import firebase from '~/plugins/firebase'
 
-export const state = {
+export const state = () => ({
     cart: [],
     info: false
-}
+});
 
 export const mutations = {
     addCart(state, payload) {

@@ -4,13 +4,16 @@
       <hr />
       <li v-for="item in $store.state.item.items" :key="item.id">
         <div>
-          <img :src="item.url" width="130px" />
+          <img :src="item.url" width="120px" />
           商品名:
-          <input type="text" :value="item.name" />
+          <input type="text" :value="item.name" style="width:150px"/>
           価格: ¥
-          <input type="text" :value="item.price" />
+          <input type="text" :value="item.price" style="width:60px"/>
+          在庫数: 
+          <input type="number" :value="item.inventry" style="width:45px"/>
           画像:
           <input type="file" :value="item.img" />
+          <v-btn> 編集 </v-btn>
           <v-btn @click="remove(item.id)"> 削除 </v-btn>
         </div>
         <hr />

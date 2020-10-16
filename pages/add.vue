@@ -7,6 +7,7 @@
             <v-form>
               <v-text-field v-model="item.name" label="商品名" />
               <v-text-field v-model="item.price" label="価格" />
+              <v-text-field v-model="item.inventry" label="在庫数" />
               <v-file-input v-model="item.img" label="画像" />
               <v-btn @click="submit"> 保存 </v-btn>
             </v-form>

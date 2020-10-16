@@ -5,10 +5,10 @@ const db = firebase.firestore().collection('bags')
 const storage = firebase.storage()
 
 
-export const state = {
+export const state = () => ({
     items: [],
     item: []
-}
+});
 
 export const mutations = {
     showInit (state, payload) {
