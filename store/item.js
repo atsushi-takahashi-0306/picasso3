@@ -86,7 +86,6 @@ export const actions = {
         } else {
             commit('incrementItemQuantity', cartItem);
         }
-
     },
     removeCart({ commit }, payload) {
         commit('removeCart', payload)

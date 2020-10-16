@@ -74,7 +74,7 @@
       </v-btn>
       <v-btn icon nuxt to="/cart" class="mr-3">
         <v-icon>mdi-cart-outline</v-icon>
-        <span>{{ $store.state.item.cart.length }}</span>
+        <span>{{ $store.state.item.cart.reduce((p, x) => p +Number(x.quantity), 0) }}</span>
       </v-btn>
     </v-app-bar>
     <v-sheet

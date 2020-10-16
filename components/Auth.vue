@@ -4,8 +4,6 @@
       <p class="login">ログイン中</p>
       <p>メールアドレス：{{ isLogin }}</p>
       <p class="name">お名前：{{ displayName }}</p>
-
-      <nuxt-link to="/"><v-btn class="back-btn">戻る</v-btn></nuxt-link>
       <v-btn @click="logout">ログアウト</v-btn>
     </div>
     <div v-show="!isLogin" id="firebaseui-auth-container"></div>
@@ -68,9 +66,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.back-btn{
-  margin-right:5px;
-}
 .name{
   margin-right:20px;
   margin-bottom:60px;

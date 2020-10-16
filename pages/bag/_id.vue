@@ -48,25 +48,19 @@ export default {
     const itemId = this.$route.params.id;
     this.$store.dispatch("item/show", itemId);
   },
- methods: {
-    addCart () {
+  methods: {
+    addCart() {
       const item = {
         id: this.$route.params.id,
         name: this.$store.state.item.item.name,
         price: this.$store.state.item.item.price,
         url: this.$store.state.item.item.url,
-        quantity:1
-      }
-      this.$store.dispatch('item/addCart', item)
+        quantity: 1,
+      };
+      this.$store.dispatch("item/addCart", item);
       this.$router.push({ name: "cart" });
     },
-    infoShow () {
-      this.info = true
-    },
-    infoHide () {
-      this.info = false
-    }
-  }
+  },
 };
 </script>
 

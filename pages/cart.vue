@@ -26,6 +26,7 @@
                 style="width: 50px"
                 min="0"
                 max="5"
+                border:solid
               />
             </div>
             <div>
@@ -42,7 +43,14 @@
 
         <div class="buy-info">
           <div class="subtotal-price">
-            <span>合計:</span>
+            <span
+              >合計({{
+                $store.state.item.cart.reduce(
+                  (p, x) => p + Number(x.quantity),
+                  0
+                )
+              }}点):</span
+            >
             <span class="price-txt">¥{{ Number(totalPrice) | addComma }}</span>
           </div>
           <div>
@@ -57,15 +65,13 @@
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="440">
           <v-card>
-            <v-card-title>
-              ログインされていますでしょうか？
-            </v-card-title>
+            <v-card-title> ログインされていますでしょうか？ </v-card-title>
             <v-card-text
               >ログインがお済みでないようでしたらお手数ですがログインをお願い致します。
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn @click="closeDialog"> 戻る </v-btn>
+              <v-btn @click="dialog = !dialog"> 戻る </v-btn>
               <v-btn nuxt to="login"> ログイン画面へ </v-btn>
             </v-card-actions>
           </v-card>
@@ -77,7 +83,7 @@
       <center>
         <p class="cart-info">お客様のカートには商品がありません。</p>
         <p>商品をカートに追加して下さい。</p>
-        <v-btn nuxt to="/">戻る</v-btn>
+        <v-btn nuxt to="/" class="back-btn">戻る</v-btn>
       </center>
     </div>
   </div>
@@ -110,13 +116,11 @@ export default {
     },
     checkLogin() {
       if (this.$store.getters["user/isLogin"]) {
-        this.$router.push({ name: "checkout" })
+        this.$router.push({ name: "checkout" });
+        this.$store.state.item.cart = [];
       } else {
         this.dialog = true;
       }
-    },
-    closeDialog() {
-      this.dialog = false;
     },
   },
 };
@@ -170,5 +174,8 @@ export default {
 .cart-info {
   text-align: center;
   margin-top: 50px;
+}
+.back-btn {
+  margin-bottom: 72px;
 }
 </style>

@@ -7,6 +7,7 @@
           <Auth />
         </div>
       </v-sheet>
+      <v-btn nuxt to="/" class="back-btn">戻る</v-btn>
     </center>
   </div>
 </template>
@@ -45,11 +46,13 @@ export default {
   color: #35495e;
   letter-spacing: 1px;
 }
-.login-txt{
-  font-size:30px;
+.login-txt {
+  font-size: 30px;
   font-weight: 300;
   padding-top: 15px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
-
+.back-btn {
+  margin-top: 10px;
+}
 </style>
