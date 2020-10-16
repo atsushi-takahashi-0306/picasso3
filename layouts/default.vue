@@ -14,10 +14,8 @@
         <v-list-item-content class="ml-2">
           <v-btn icon nuxt to="/"><v-icon>mdi-home</v-icon></v-btn>
         </v-list-item-content>
-        <v-list-item-content class="pl-14">
-          <v-btn icon
-            ><v-icon @click="drawer = !drawer">mdi-window-close</v-icon></v-btn
-          >
+        <v-list-item-content class="pl-14" >
+          <v-icon elevation="0" dense @click="drawer = !drawer">mdi-window-close</v-icon>
         </v-list-item-content>
       </v-list-item>
 
@@ -74,7 +72,9 @@
       </v-btn>
       <v-btn icon nuxt to="/cart" class="mr-3">
         <v-icon>mdi-cart-outline</v-icon>
-        <span>{{ $store.state.item.cart.reduce((p, x) => p +Number(x.quantity), 0) }}</span>
+        <span>{{
+          $store.state.item.cart.reduce((p, x) => p + Number(x.quantity), 0)
+        }}</span>
       </v-btn>
     </v-app-bar>
     <v-sheet
@@ -109,7 +109,7 @@ export default {
   data: function () {
     return {
       drawer: false,
-      items: [{ title: "Bags", icon: "mdi-purse-outline" }],
+      items: [{ title: "Bags", icon: "mdi-briefcase-outline" }],
       right: null,
     };
   },
@@ -132,4 +132,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.v-list-item {
+  padding-right: 0;
+}
 </style>

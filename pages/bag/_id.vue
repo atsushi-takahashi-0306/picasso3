@@ -18,8 +18,17 @@
     </div>
 
     <div class="item-meta">
+       <div class="social-btn">
+        <div class="social-btn">
+          <a href="https://www.facebook.com/"><span class="facebook-btn"
+            ><img src="~/static/facebook.png" width="33px"
+          /></span></a>
+          <a href="https://twitter.com/"><span class="twitter-btn"><img src="~/static/twitter.png" width="32px" /></span></a>
+        </div>
+      </div>
       <p class="name-txt">{{ showItem.name }}</p>
-      <p class="price-txt">¥{{ Number(showItem.price) | addComma }}</p>
+        <p class="price-txt">¥{{ Number(showItem.price) | addComma }}</p>
+     
       <div class="two-btn">
         <nuxt-link to="/">
           <v-btn class="back-btn"> 戻る </v-btn>
@@ -80,7 +89,7 @@ export default {
   margin-left: 120px;
 }
 .item-meta {
-  margin-top: 200px;
+  margin-top: 100px;
 }
 .two-btn {
   margin-top: 30px;
@@ -88,4 +97,12 @@ export default {
 .back-btn {
   margin-right: 5px;
 }
+.social-btn{
+  margin-left: 100px;
+}
+.facebook-btn{
+  margin-right: 2px;
+}
+
+
 </style>
