@@ -48,12 +48,13 @@
         </div>
       </ul>
     </div>
-
-    <p v-else class="cart-info">
-      お客様のカートに商品がありません。<br /><nuxt-link to="/"
-        >商品ページ</nuxt-link
-      >からカートに追加してください。
-    </p>
+    <div v-else>
+      <center>
+        <p class="cart-info">お客様のカートには商品がありません。</p>
+        <p>商品をカートに追加して下さい。</p>
+        <v-btn nuxt to="/">戻る</v-btn>
+      </center>
+    </div>
   </div>
 </template>
 
@@ -79,7 +80,7 @@ export default {
     removeCart(index) {
       this.$store.dispatch("cart/removeCart", index);
     },
-  }
+  },
 };
 </script>
 

@@ -37,7 +37,7 @@ export default {
         });
     },
     or(){
-      var elements = document.getElementsByClassName();
+      const elements = document.getElementsByClassName();
     }
   },
   mounted() {
