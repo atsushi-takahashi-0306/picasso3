@@ -7,7 +7,6 @@
           <Auth />
         </div>
       </v-sheet>
-    <nuxt-link to="/"><v-btn class="back-btn">戻る</v-btn></nuxt-link>
     </center>
   </div>
 </template>
@@ -52,7 +51,5 @@ export default {
   padding-top: 15px;
   margin-bottom: 70px;
 }
-.back-btn{
-  margin-top: 30px;
-}
+
 </style>

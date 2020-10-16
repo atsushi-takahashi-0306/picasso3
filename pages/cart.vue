@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="$store.state.cart.cart.length">
+    <div v-if="$store.state.item.cart.length">
       <div class="grid2">
         <span>単価</span>
         <span>数量</span>
@@ -8,7 +8,7 @@
       </div>
       <ul>
         <hr />
-        <li v-for="(item, index) in $store.state.cart.cart" :key="index">
+        <li v-for="(item, index) in $store.state.item.cart" :key="index">
           <div class="grid">
             <div>
               <img v-lazy="item.url" width="150px" />
@@ -20,10 +20,16 @@
               <span class="price-txt">¥{{ item.price }}</span>
             </div>
             <div>
-              <span>1</span>
+              <input
+                type="number"
+                v-model="item.quantity"
+                style="width: 50px"
+                min="0"
+                max="5"
+              />
             </div>
             <div>
-              <span class="price-txt">¥{{ item.price }}</span>
+              <span class="price-txt">¥{{ item.price * item.quantity }}</span>
             </div>
             <div>
               <v-icon @click="removeCart(index)"
@@ -36,18 +42,37 @@
 
         <div class="buy-info">
           <div class="subtotal-price">
-            <span>合計({{ $store.state.cart.cart.length }}点):</span>
+            <span>合計:</span>
             <span class="price-txt">¥{{ Number(totalPrice) | addComma }}</span>
           </div>
           <div>
             <v-btn nuxt to="/" class="back-button">shoppingを続ける</v-btn>
-            <v-btn nuxt to="/checkout" class="checkout-button">
+            <v-btn @click="checkLogin" class="checkout-button">
               購入する
             </v-btn>
           </div>
         </div>
       </ul>
+
+      <v-row justify="center">
+        <v-dialog v-model="dialog" persistent max-width="440">
+          <v-card>
+            <v-card-title>
+              ログインされていますでしょうか？
+            </v-card-title>
+            <v-card-text
+              >ログインがお済みでないようでしたらお手数ですがログインをお願い致します。
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="closeDialog"> 戻る </v-btn>
+              <v-btn nuxt to="login"> ログイン画面へ </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
     </div>
+
     <div v-else>
       <center>
         <p class="cart-info">お客様のカートには商品がありません。</p>
@@ -59,26 +84,39 @@
 </template>
 
 <script>
-import Vue from "vue";
-
 export default {
   head() {
     return {
       title: "picasso  |  cart",
     };
   },
+  data() {
+    return {
+      dialog: false,
+    };
+  },
   computed: {
     totalPrice() {
       let total = 0;
-      this.$store.state.cart.cart.forEach((item) => {
-        total += Number(item.price);
+      this.$store.state.item.cart.forEach((item) => {
+        total += Number(item.price * item.quantity);
       });
       return total;
     },
   },
   methods: {
     removeCart(index) {
-      this.$store.dispatch("cart/removeCart", index);
+      this.$store.dispatch("item/removeCart", index);
+    },
+    checkLogin() {
+      if (this.$store.getters["user/isLogin"]) {
+        this.$router.push({ name: "checkout" })
+      } else {
+        this.dialog = true;
+      }
+    },
+    closeDialog() {
+      this.dialog = false;
     },
   },
 };
@@ -132,6 +170,5 @@ export default {
 .cart-info {
   text-align: center;
   margin-top: 50px;
-  margin-bottom: 138px;
 }
 </style>

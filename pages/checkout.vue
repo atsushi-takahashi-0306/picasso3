@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <center>
-      <p>お客様のカードの情報をこちらに入力して下さい。</p>
-      <p>ご購入ありがとうございました。</p>
+      <p>ご購入誠にありがとうございました。</p>
       <nuxt-link to="cart">
         <v-btn> 戻る </v-btn>
       </nuxt-link>

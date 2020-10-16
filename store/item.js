@@ -7,14 +7,27 @@ const storage = firebase.storage()
 
 export const state = () => ({
     items: [],
-    item: []
+    item: [],
+    cart: [],
 });
 
+
 export const mutations = {
-    showInit (state, payload) {
-      state.item = payload
+    showInit(state, payload) {
+        state.item = payload
+    },
+    addCart(state, payload) {
+        state.cart.push(payload)
+    },
+    removeCart(state, payload) {
+        state.cart.splice(payload, 1)
+    },
+    incrementItemQuantity(state, { id }) {
+        const cartItem = state.cart.find(item => item.id === id);
+        cartItem.quantity++;
     }
-  }
+}
+
 
 export const actions = {
     upImage: (context, payload) => {
@@ -39,8 +52,8 @@ export const actions = {
     init: firestoreAction(({ bindFirestoreRef }) => {
         bindFirestoreRef('items', db)
     }),
-    show({ commit, context }, payload) {
-        db.doc(payload).get().then(function (doc) {
+    show({ commit, context }, itemId) {
+        db.doc(itemId).get().then(function (doc) {
             const item = {
                 name: doc.data().name,
                 price: doc.data().price,
@@ -51,21 +64,31 @@ export const actions = {
     },
     remove: firestoreAction((context, id) => {
         if (confirm('削除してもよろしいですか？')) {
-          db.doc(id).delete().then(function() {
-            console.log("Document successfully deleted!");
-        }).catch(function(error) {
-            console.error("Error removing document: ", error)
-                .then(function (id) {
-                    
-                
-            })
-        });
-        
+            db.doc(id).delete().then(function () {
+                console.log("Document successfully deleted!");
+            }).catch(function (error) {
+                console.error("Error removing document: ", error)
+                    .then(function (id) {
+                    })
+            });
+
         }
-      }),
+    }),
     update: firestoreAction((context, id) => {
         if (confirm('編集してもよろしいですか？')) {
             db.doc(id).set({})
         }
-      }),
+    }),
+    addCart({ state,commit }, payload) {
+        const cartItem = state.cart.find(item => item.id === payload.id)
+        if (!cartItem) {
+            commit('addCart', payload)
+        } else {
+            commit('incrementItemQuantity', cartItem);
+        }
+
+    },
+    removeCart({ commit }, payload) {
+        commit('removeCart', payload)
+    },
 }

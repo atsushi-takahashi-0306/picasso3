@@ -10,7 +10,7 @@
       <p style="margin-top:15px; font-weight:bold;">make sure the URL is correct or not.</p>
       <p style="margin-top:5px; font-weight:bold;">click here to 
       <NuxtLink to="/">
-        home page
+        Top page
       </NuxtLink>
       </p>
     </v-app>

@@ -24,10 +24,8 @@
         <nuxt-link to="/">
           <v-btn class="back-btn"> 戻る </v-btn>
         </nuxt-link>
-   
-        <v-btn @click="addCart">
-          <span>カートに追加</span>
-        </v-btn>
+
+        <v-btn @click="addCart"> カートに追加</v-btn>
       </div>
     </div>
   </div>
@@ -50,18 +48,25 @@ export default {
     const itemId = this.$route.params.id;
     this.$store.dispatch("item/show", itemId);
   },
-  methods: {
-    addCart() {
+ methods: {
+    addCart () {
       const item = {
         id: this.$route.params.id,
         name: this.$store.state.item.item.name,
         price: this.$store.state.item.item.price,
         url: this.$store.state.item.item.url,
-      };
-      this.$store.dispatch("cart/addCart", item);
+        quantity:1
+      }
+      this.$store.dispatch('item/addCart', item)
       this.$router.push({ name: "cart" });
     },
-  },
+    infoShow () {
+      this.info = true
+    },
+    infoHide () {
+      this.info = false
+    }
+  }
 };
 </script>
 
@@ -83,10 +88,10 @@ export default {
 .item-meta {
   margin-top: 200px;
 }
-.two-btn{
+.two-btn {
   margin-top: 30px;
 }
-.back-btn{
+.back-btn {
   margin-right: 5px;
 }
 </style>
