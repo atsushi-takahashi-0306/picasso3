@@ -20,7 +20,7 @@
               <span>{{ item.name }}</span>
             </div>
             <div>
-              <span class="price-txt">¥{{ item.price }}</span>
+              <span class="price-txt">¥{{ Number(item.price) | addComma }}</span>
             </div>
             <div>
               <input
@@ -32,7 +32,7 @@
               />
             </div>
             <div>
-              <span class="price-txt">¥{{ item.price * item.quantity }}</span>
+              <span class="price-txt">¥{{ Number(item.price) * item.quantity| addComma }}</span>
             </div>
             <div>
               <v-icon @click="removeCart(index)"
@@ -80,7 +80,7 @@
         </v-dialog>
       </v-row>
 
-      <v-row justify="center">
+      <!-- <v-row justify="center">
         <v-dialog v-model="check0Dialog" persistent max-width="440">
           <v-card>
             <v-card-title>カートに商品は入っていますでしょうか？ </v-card-title>
@@ -94,7 +94,7 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-      </v-row>
+      </v-row> -->
     </div>
 
     <div v-else>
@@ -118,7 +118,7 @@ export default {
   data() {
     return {
       checkLoginDialog: false,
-      check0Dialog: false,
+      // check0Dialog: false,
     };
   },
   computed: {
@@ -135,20 +135,16 @@ export default {
       this.$store.dispatch("item/removeCart", index);
     },
     checkLogin() {
-      if(!this.$store.state.user.email){
+      if (this.$store.state.user.email) {
+        this.$router.push({ name: "checkout" });
+        this.$store.state.item.cart = [];
+      } else {
         this.checkLoginDialog = true;
       }
-      if(this.total  = 0){
-        this.check0Dialog = true;
-      }
-      if (this.$store.state.user.email ||  this.total  > 0) {
-        this.$router.push({ name: "checkout" });
-      }
-    }
+    },
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .grid {

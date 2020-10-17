@@ -66,7 +66,19 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://localhost:3000',
+    exclude: ['/add', '/edit'],
+  },
+  robots: {
+    UserAgent: '*',
+    Disallow: '*',
+    Sitemap: 'https://localhost:3000/sitemap.xml',
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

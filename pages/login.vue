@@ -5,7 +5,6 @@
         <div>
           <p class="login-txt">Login</p>
           <Auth />
-         <v-btn nuxt to="/" class="back-btn">戻る</v-btn>
         </div>
       </v-sheet>
     </center>

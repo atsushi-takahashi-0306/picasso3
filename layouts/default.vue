@@ -132,4 +132,7 @@ export default {
 
 
 <style lang="scss" scoped>
+#app > div > nav > div.v-navigation-drawer__content > div.v-list-item.theme--dark > div.v-list-item__content.pl-14 > button::after{
+  width:0%;
+}
 </style>
