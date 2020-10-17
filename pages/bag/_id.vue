@@ -13,27 +13,21 @@
         </v-carousel-item>
       </v-carousel>
     </div>
+
     <div class="main-img">
       <img v-lazy="showItem.url" width="430px" />
     </div>
 
     <div class="item-meta">
-       <div class="social-btn">
-        <div class="social-btn">
-          <a href="https://www.facebook.com/"><span class="facebook-btn"
-            ><img src="~/static/facebook.png" width="33px"
-          /></span></a>
-          <a href="https://twitter.com/"><span class="twitter-btn"><img src="~/static/twitter.png" width="32px" /></span></a>
-        </div>
-      </div>
       <p class="name-txt">{{ showItem.name }}</p>
-        <p class="price-txt">¥{{ Number(showItem.price) | addComma }}</p>
-     
+      <p class="price-txt">¥{{ Number(showItem.price) | addComma }}</p>
+      <a href="https://twitter.com/"
+        ><span><img src="~/static/twitter.png" width="29px" /></span
+      ></a>
       <div class="two-btn">
         <nuxt-link to="/">
           <v-btn class="back-btn"> 戻る </v-btn>
         </nuxt-link>
-
         <v-btn @click="addCart"> カートに追加</v-btn>
       </div>
     </div>
@@ -45,7 +39,7 @@
 export default {
   head() {
     return {
-      title: "picasso  |  bags",
+      title: "picasso  |  bag",
     };
   },
   computed: {
@@ -73,6 +67,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
 .name-txt {
   font-size: 50px;
@@ -81,6 +76,14 @@ export default {
 .price-txt {
   font-weight: 300;
   font-size: 19px;
+  margin-right: 25px;
+  display: inline;
+}
+.two-btn {
+  margin-top: 30px;
+}
+.back-btn {
+  margin-right: 5px;
 }
 .flex {
   display: flex;
@@ -91,18 +94,4 @@ export default {
 .item-meta {
   margin-top: 100px;
 }
-.two-btn {
-  margin-top: 30px;
-}
-.back-btn {
-  margin-right: 5px;
-}
-.social-btn{
-  margin-left: 100px;
-}
-.facebook-btn{
-  margin-right: 2px;
-}
-
-
 </style>

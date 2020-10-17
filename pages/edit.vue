@@ -1,18 +1,23 @@
 <template>
   <div class="container">
     <ul v-if="$store.state.item.items.length">
+      <span>合計アイテム数:{{ $store.state.item.items.length }}</span>
+      <span>/総在庫数:</span>
       <hr />
       <li v-for="item in $store.state.item.items" :key="item.id">
         <div>
-          <img :src="item.url" width="120px" />
+          <nuxt-link :to="{ name: 'bag-id', params: { id: item.id } }">
+            <img v-lazy="item.url" width="120px" />
+          </nuxt-link>
           商品名:
-          <input type="text" :value="item.name" style="width:150px"/>
+          <input type="text" :value="item.name" style="width: 130px" />
+          ID:
+          <input type="text" :value="item.id" style="width: 210px" />
           価格: ¥
-          <input type="text" :value="item.price" style="width:60px"/>
-          在庫数: 
-          <input type="number" :value="item.inventry" style="width:45px"/>
-          画像:
-          <input type="file" :value="item.img" />
+          <input type="text" :value="item.price" style="width: 60px" />
+          在庫数:
+          <input type="number" :value="item.inventry" style="width: 40px" />
+          <v-btn class="soldout-btn"> soldout </v-btn>
           <v-btn> 編集 </v-btn>
           <v-btn @click="remove(item.id)"> 削除 </v-btn>
         </div>
@@ -43,5 +48,10 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
+.soldout-btn {
+  margin-left: 30px;
+  margin-right: 15px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <center>
-      <p>ご購入誠にありがとうございました。</p>
+      <p class="thanks-msg">ご購入誠にありがとうございました。</p>
       <nuxt-link to="/">
         <v-btn class="back-btn"> 戻る </v-btn>
       </nuxt-link>
@@ -9,9 +9,8 @@
   </div>
 </template>
 
+
 <script>
-
-
 export default {
   head() {
     return {
@@ -21,8 +20,12 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
-.back-btn{
-  margin-bottom:162px;
+.thanks-msg {
+  margin-top: 30px;
+}
+.back-btn {
+  margin-bottom: 132px;
 }
 </style>

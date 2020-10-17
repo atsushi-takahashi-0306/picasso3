@@ -27,11 +27,12 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  gap: 8px;
 }
 .grid-item {
   margin-bottom: 10px;
@@ -44,8 +45,8 @@ export default {
   font-weight: 500;
 }
 .price-txt {
+  margin-left: 60px;
   font-weight: 300;
   font-size: 14px;
-  margin-left: 60px;
 }
 </style>

@@ -14,8 +14,10 @@
         <v-list-item-content class="ml-2">
           <v-btn icon nuxt to="/"><v-icon>mdi-home</v-icon></v-btn>
         </v-list-item-content>
-        <v-list-item-content class="pl-14" >
-          <v-icon elevation="0" dense @click="drawer = !drawer">mdi-window-close</v-icon>
+        <v-list-item-content class="pl-14">
+          <v-icon elevation="0" dense @click="drawer = !drawer"
+            >mdi-window-close</v-icon
+          >
         </v-list-item-content>
       </v-list-item>
 
@@ -55,9 +57,7 @@
           gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         ></v-img>
       </template>
-
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
       <nuxt-link to="/"
         ><v-toolbar-title class="white--text ml-3 pt-0" style="font-size: 30px"
           >picasso</v-toolbar-title
@@ -65,6 +65,7 @@
       >
 
       <v-spacer></v-spacer>
+
       <v-btn icon nuxt to="/login" class="mr-3">
         <v-badge v-model="isLogin" dot color="red" overlap>
           <v-icon>mdi-account-outline</v-icon>
@@ -77,6 +78,7 @@
         }}</span>
       </v-btn>
     </v-app-bar>
+
     <v-sheet
       id="scrolling-techniques-2"
       class="overflow-y-auto"
@@ -91,7 +93,7 @@
       <v-footer style="margin-top: 120px">
         <v-col class="text-center pa-0"
           ><span class="footer-txt"
-            >&copy; {{ new Date().getFullYear() }} picasso</span
+            >&copy; {{ new Date().getFullYear() }}picasso</span
           ></v-col
         >
       </v-footer>
@@ -100,9 +102,7 @@
 </template>
 
 
-
 <script>
-import Vue from "vue";
 import firebase from "~/plugins/firebase";
 
 export default {
@@ -110,13 +110,12 @@ export default {
     return {
       drawer: false,
       items: [{ title: "Bags", icon: "mdi-briefcase-outline" }],
-      right: null,
     };
   },
   computed: {
     isLogin: {
       get: function () {
-        return this.$store.getters["user/isLogin"];
+        return this.$store.state.user.email;
       },
       set: function (value) {
         console.log("", value);
@@ -131,8 +130,6 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
-.v-list-item {
-  padding-right: 0;
-}
 </style>

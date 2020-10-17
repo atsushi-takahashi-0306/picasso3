@@ -3,17 +3,6 @@ export const state = () => ({
     displayName: '',
   });
   
-  export const actions = {
-    login ({commit}, user) {
-      commit ('setEmail', user.email);
-      commit ('setDisplayName', user.displayName);
-    },
-    logout({commit}) {
-      commit ('setEmail', '');
-      commit ('setDisplayName', '');
-    },
-  };
-  
   export const mutations = {
     setEmail (state, email) {
       state.email = email;
@@ -23,11 +12,13 @@ export const state = () => ({
     },
   };
   
-  export const getters = {
-    isLogin: state => {
-      return state.email;
+  export const actions = {
+    login ({commit}, user) {
+      commit ('setEmail', user.email);
+      commit ('setDisplayName', user.displayName);
     },
-    displayName: state => {
-      return state.displayName;
+    logout({commit}) {
+      commit ('setEmail', '');
+      commit ('setDisplayName', '');
     },
   };

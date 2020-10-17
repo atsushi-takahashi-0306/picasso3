@@ -5,11 +5,12 @@
         <v-card>
           <v-card-text>
             <v-form>
-              <v-text-field v-model="item.name" label="商品名" />
-              <v-text-field v-model="item.price" label="価格" />
-              <v-text-field v-model="item.inventry" label="在庫数" />
-              <v-file-input v-model="item.img" label="画像" />
-              <v-btn @click="submit"> 保存 </v-btn>
+              <v-text-field v-model="item.name"  label="商品名" :rules="rules"/>
+              <v-text-field v-model="item.price" label="価格" :rules="rules" />
+              <v-text-field v-model="item.inventry" label="在庫数"/>
+              <v-file-input v-model="item.img" label="画像" counter @change="Preview_image"/>
+              <v-img :src="url" width="110px" class="preview-img"></v-img>
+              <v-btn @click="submit">商品登録</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
@@ -26,10 +27,15 @@ export default {
       title: "picasso  |  add",
     };
   },
-  data() {
+  data () {
+    const max = 30
     return {
-      item: {},
-    };
+      item:{},
+      rules: [
+        v => !!v || '',
+      ],
+      url: null,
+    }
   },
   methods: {
     submit() {
@@ -40,11 +46,17 @@ export default {
         this.$router.push({ name: "index" });
       });
     },
+    Preview_image() {
+      this.url= URL.createObjectURL(this.item.img)
+    }
   },
 };
 </script>
 
 
 <style lang="scss" scoped>
+.preview-img{
+  margin-bottom:30px;
+}
 </style>
 

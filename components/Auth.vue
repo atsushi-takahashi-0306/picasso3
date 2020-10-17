@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-show="isLogin">
-      <p class="login">ログイン中</p>
+      <p>ログイン中</p>
       <p>メールアドレス：{{ isLogin }}</p>
-      <p class="name">お名前：{{ displayName }}</p>
+      <p class="name-txt">お名前：{{ displayName }}</p>
       <v-btn @click="logout">ログアウト</v-btn>
     </div>
     <div v-show="!isLogin" id="firebaseui-auth-container"></div>
@@ -17,10 +17,10 @@ import firebase from "~/plugins/firebase";
 export default {
   computed: {
     isLogin() {
-      return this.$store.getters["user/isLogin"];
+      return this.$store.state.user.email;
     },
     displayName() {
-      return this.$store.getters["user/displayName"];
+      return this.$store.state.user.displayName;
     },
   },
   methods: {
@@ -31,12 +31,12 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          console.log("ログアウトしました");
+          console.log("Logout is done!");
         });
     },
-    or(){
+    or() {
       const elements = document.getElementsByClassName();
-    }
+    },
   },
   mounted() {
     const firebase = require("firebase");
@@ -65,9 +65,10 @@ export default {
 };
 </script>
 
+
 <style lang="scss" scoped>
-.name{
-  margin-right:20px;
-  margin-bottom:60px;
+.name-txt {
+  margin-right: 20px;
+  margin-bottom: 60px;
 }
 </style>

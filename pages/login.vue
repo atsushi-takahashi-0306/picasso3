@@ -5,12 +5,13 @@
         <div>
           <p class="login-txt">Login</p>
           <Auth />
+         <v-btn nuxt to="/" class="back-btn">戻る</v-btn>
         </div>
       </v-sheet>
-      <v-btn nuxt to="/" class="back-btn">戻る</v-btn>
     </center>
   </div>
 </template>
+
 
 <script>
 import Auth from "~/components/Auth.vue";
@@ -27,25 +28,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 30px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+<style lang="scss" scoped>
 .login-txt {
   font-size: 30px;
   font-weight: 300;
