@@ -1,3 +1,5 @@
+import "firebase/firestore"
+
 export const state = () => ({
     email: '',
     displayName: '',

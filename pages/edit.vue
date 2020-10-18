@@ -8,7 +8,7 @@
         }}</span
       >
       <hr />
-      <li v-for="item in $store.state.item.items" :key="item.id">
+      <li v-for="(item, index) in $store.state.item.items" :key="index">
         <div>
           <nuxt-link :to="{ name: 'bag-id', params: { id: item.id } }">
             <img v-lazy="item.url" width="120px" />
@@ -25,8 +25,8 @@
           />
           在庫数:
           <input type="number" :value="item.inventry" style="width: 40px" />
-          <v-btn class="soldout-btn"> soldout </v-btn>
-          <v-btn @click="update">
+          <v-btn class="soldout-btn" disabled> soldout </v-btn>
+          <v-btn @click="update(index)">
             編集
           </v-btn>
           <v-btn @click="remove(item.id)"> 削除 </v-btn>
@@ -59,8 +59,8 @@ export default {
     remove(id) {
       this.$store.dispatch("item/remove", id);
     },
-    update() {
-      this.$store.dispatch("item/update", this.item);
+    update(index) {
+      this.$store.dispatch("item/update", index);
     },
   },
 };

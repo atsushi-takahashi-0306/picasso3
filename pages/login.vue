@@ -14,6 +14,7 @@
 
 <script>
 import Auth from "~/components/Auth.vue";
+import "firebase/auth"
 
 export default {
   head() {

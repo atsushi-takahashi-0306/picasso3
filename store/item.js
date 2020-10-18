@@ -1,5 +1,6 @@
 import { firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
+import "firebase/firestore"
 
 const editDB = firebase.firestore().collection('bags').orderBy("inventry", "asc")
 const db = firebase.firestore().collection('bags')
@@ -33,7 +34,7 @@ export const mutations = {
 export const actions = {
     upImage: (context, payload) => {
         return new Promise((resolve, reject) => {
-            var uploadTask = storage
+            const uploadTask = storage
                 .ref('images/bags/' + payload.name)
                 .put(payload)
                 .then(snapshot => {
@@ -43,6 +44,18 @@ export const actions = {
                 })
         })
     },
+    remove: firestoreAction((context, id) => {
+        if (confirm('削除してもよろしいですか？')) {
+            db.doc(id).delete().then(function () {
+                console.log("Document successfully deleted!");
+            }).catch(function (error) {
+                console.error("Error removing document: ", error)
+                    .then(function (id) {
+                    })
+            });
+
+        }
+    }),
     addItem: firestoreAction((context, payload) => {
         db.add({
             name: payload.name,
@@ -67,18 +80,6 @@ export const actions = {
             commit('showInit', item)
         })
     },
-    remove: firestoreAction((context, id) => {
-        if (confirm('削除してもよろしいですか？')) {
-            db.doc(id).delete().then(function () {
-                console.log("Document successfully deleted!");
-            }).catch(function (error) {
-                console.error("Error removing document: ", error)
-                    .then(function (id) {
-                    })
-            });
-
-        }
-    }),
     update: firestoreAction((context, payload) => {
         if (confirm('編集してもよろしいですか？')) {
             db.doc(String(payload.id)).update({
