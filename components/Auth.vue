@@ -58,8 +58,8 @@ export default {
       new firebaseui.auth.AuthUI(firebase.auth());
     ui.start("#firebaseui-auth-container", uiConfig);
 
-    firebase.auth().onAuthStateChanged((user) => {
-      this.$store.dispatch("user/login", user);
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){this.$store.dispatch("user/login", user);}
     });
   },
 };

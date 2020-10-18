@@ -9,7 +9,7 @@
               <v-text-field v-model="item.price" label="価格" :rules="rules" />
               <v-text-field v-model="item.inventry" label="在庫数"/>
               <v-file-input v-model="item.img" label="画像" counter @change="Preview_image"/>
-              <v-img :src="url" width="110px" class="preview-img"></v-img>
+              <v-img :src="previewUrl" width="110px" class="preview-img"></v-img>
               <v-btn @click="submit">商品登録</v-btn>
             </v-form>
           </v-card-text>
@@ -34,7 +34,7 @@ export default {
       rules: [
         v => !!v || '',
       ],
-      url: null,
+      previewUrl: null,
     }
   },
   methods: {
@@ -43,11 +43,12 @@ export default {
         this.item.url = url;
         this.$store.dispatch("item/addItem", this.item);
         this.item = "";
+        this.previewUrl=""
         this.$router.push({ name: "index" });
       });
     },
     Preview_image() {
-      this.url= URL.createObjectURL(this.item.img)
+      this.previewUrl= URL.createObjectURL(this.item.img)
     }
   },
 };

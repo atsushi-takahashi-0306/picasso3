@@ -1,6 +1,7 @@
 import { firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 
+const editDB = firebase.firestore().collection('bags').orderBy("inventry", "asc")
 const db = firebase.firestore().collection('bags')
 const storage = firebase.storage()
 
@@ -47,10 +48,14 @@ export const actions = {
             name: payload.name,
             price: payload.price,
             url: payload.url,
+            inventry: Number(payload.inventry)
         })
     }),
     init: firestoreAction(({ bindFirestoreRef }) => {
         bindFirestoreRef('items', db)
+    }),
+    editInit: firestoreAction(({ bindFirestoreRef }) => {
+        bindFirestoreRef('items', editDB)
     }),
     show({ commit, context }, itemId) {
         db.doc(itemId).get().then(function (doc) {
@@ -74,12 +79,17 @@ export const actions = {
 
         }
     }),
-    update: firestoreAction((context, id) => {
+    update: firestoreAction((context, payload) => {
         if (confirm('編集してもよろしいですか？')) {
-            db.doc(id).set({})
+            db.doc(String(payload.id)).update({
+                name: payload.name,
+                price: payload.price,
+                url: payload.url,
+                inventry: Number(payload.inventry)
+            })
         }
     }),
-    addCart({ state,commit }, payload) {
+    addCart({ state, commit }, payload) {
         const cartItem = state.cart.find(item => item.id === payload.id)
         if (!cartItem) {
             commit('addCart', payload)

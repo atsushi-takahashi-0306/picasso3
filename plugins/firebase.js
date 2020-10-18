@@ -9,7 +9,7 @@ const firebaseConfig = {
     storageBucket: process.env.FB_STORAGE_BUCKET,
     messagingSenderId: process.env.FB_MESSAGE_SENDER_ID
   };
-if (firebase.apps.length === 0) {
+if (!firebase.apps.length){
     firebase.initializeApp(firebaseConfig);
 }
 

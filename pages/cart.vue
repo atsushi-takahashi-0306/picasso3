@@ -20,19 +20,23 @@
               <span>{{ item.name }}</span>
             </div>
             <div>
-              <span class="price-txt">¥{{ Number(item.price) | addComma }}</span>
+              <span class="price-txt"
+                >¥{{ Number(item.price) | addComma }}</span
+              >
             </div>
             <div>
               <input
                 type="number"
                 v-model="item.quantity"
-                min="0"
+                min="1"
                 max="5"
                 class="input-qty"
               />
             </div>
             <div>
-              <span class="price-txt">¥{{ Number(item.price) * item.quantity| addComma }}</span>
+              <span class="price-txt"
+                >¥{{ (Number(item.price) * item.quantity) | addComma }}</span
+              >
             </div>
             <div>
               <v-icon @click="removeCart(index)"
@@ -79,22 +83,6 @@
           </v-card>
         </v-dialog>
       </v-row>
-
-      <!-- <v-row justify="center">
-        <v-dialog v-model="check0Dialog" persistent max-width="440">
-          <v-card>
-            <v-card-title>カートに商品は入っていますでしょうか？ </v-card-title>
-            <v-card-text
-              >カートに商品が入っていませんでしたら商品ページよりお選び下さりますようお願い致します。
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn @click="check0Dialog = !check0Dialog"> 戻る </v-btn>
-              <v-btn nuxt to="/"> 商品ページへ </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row> -->
     </div>
 
     <div v-else>

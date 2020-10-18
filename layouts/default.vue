@@ -67,7 +67,7 @@
       <v-spacer></v-spacer>
 
       <v-btn icon nuxt to="/login" class="mr-3">
-        <v-badge v-model="isLogin" dot color="red" overlap>
+        <v-badge v-model="$store.state.user.email" dot color="red" overlap>
           <v-icon>mdi-account-outline</v-icon>
         </v-badge>
       </v-btn>
@@ -120,11 +120,14 @@ export default {
       set: function (value) {
         console.log("", value);
       },
+      isLogin() {
+        return this.$store.state.user.email;
+      },
     },
   },
   mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.$store.dispatch("user/login", user);
+   firebase.auth().onAuthStateChanged(user => {
+      if(user){this.$store.dispatch("user/login", user);}
     });
   },
 };
@@ -132,7 +135,13 @@ export default {
 
 
 <style lang="scss" scoped>
-#app > div > nav > div.v-navigation-drawer__content > div.v-list-item.theme--dark > div.v-list-item__content.pl-14 > button::after{
-  width:0%;
+#app
+  > div
+  > nav
+  > div.v-navigation-drawer__content
+  > div.v-list-item.theme--dark
+  > div.v-list-item__content.pl-14
+  > button::after {
+  width: 0%;
 }
 </style>
