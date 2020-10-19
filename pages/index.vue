@@ -8,7 +8,6 @@
         <span class="name-txt">{{ item.name }}</span>
         <br />
         <span class="price-txt">¥{{ Number(item.price) | addComma }}</span>
-        <p>hello</p>
       </li>
     </ul>
   </div>
