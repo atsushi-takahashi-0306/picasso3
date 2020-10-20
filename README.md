@@ -1,20 +1,21 @@
-# picasso3
+# 概要
+自分が趣味で作ったトートバッグのサンプルECサイトをNuxt.jsとFirebaseを利用して作成しました。<br>
+<br>
+Nuxt.jsはフロントエンド部分を担当し、バックエンド部分のデータベース機能、会員登録・ログイン機能、デプロイに関してはfirebaseで担当しました。<br>
+<br>
+画像は自分自身で一眼レフカメラで撮影し、画像の加工はGIMPというソフトを使用しました。<br>
 
-## Build Setup
+# 実装した機能
+●ドロワーメニュー ：vuetifyというフレームワークを利用して実装しました。<br>
+<br>
+●ログイン機能:firebaseのAuthenticationを利用しメールアドレスとパスワードのログイン機能にプラスしてソーシャルログイン機能を実装しました。<br>
+<br>
+●商品登録機能：addページの入力フォームより入力した、商品名、価格、在庫数、画像のURLをfirebaseのfirestoreへ登録し、画像をfirebaseのStorageに登録できるようアップロード機能を実装しました。<br>
+<br>
+●商品の表示機能：Topページでfirebaseのfirestoreから商品名、価格、画像のURLを取得し、CSSのgridを使用し表示出来るよう実装しました。<br>
+<br>
+●カート機能：vuex-persistedstateのプラグインを使用しカートに入れた商品をブラウザが閉じられてもデータを保持出来るように実装しました。<br>
+<br>
+●デプロイ機能：firebaseのHostingとGitHubを連携し、GitHubにpushすればデプロイされるよう自動デプロイの機能を実装しました。<br>
 
-```bash
-# install dependencies
-$ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
