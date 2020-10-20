@@ -36,6 +36,7 @@ export default {
 }
 .grid-item {
   margin-bottom: 10px;
+  transition: 0.4s ;
   &:hover {
     opacity: 0.7;
   }

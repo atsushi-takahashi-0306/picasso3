@@ -69,9 +69,9 @@
       <v-row justify="center">
         <v-dialog v-model="checkLoginDialog" persistent max-width="440">
           <v-card>
-            <v-card-title> ログインされていますでしょうか？ </v-card-title>
+            <v-card-title> ログインはされていますでしょうか？ </v-card-title>
             <v-card-text
-              >ログインがお済みでないようでしたらお手数ですがログインをお願い致します。
+              >ログインがお済みでないようでしたらお手数ですがログイン画面よりログインをお願い致します。
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
