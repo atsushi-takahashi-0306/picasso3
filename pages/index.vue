@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="grid">
       <li v-for="item in $store.state.item.items" :key="item.id">
-        <nuxt-link :to="{ name: 'bag-id', params: { id: item.id } }">
+        <nuxt-link @click="location.reload()" :to="{ name: 'bag-id', params: { id: item.id } }">
           <img v-lazy="item.url" width="230px" class="grid-item" />
         </nuxt-link>
         <span class="name-txt">{{ item.name }}</span>
@@ -36,7 +36,7 @@ export default {
 }
 .grid-item {
   margin-bottom: 10px;
-  transition: 0.4s ;
+  transition: 0.4s;
   &:hover {
     opacity: 0.7;
   }

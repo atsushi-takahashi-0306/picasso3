@@ -26,7 +26,7 @@
           在庫数:
           <input type="number" :value="item.inventry" style="width: 40px" />
           <v-btn class="soldout-btn" disabled> soldout </v-btn>
-          <v-btn @click="update(index)">
+          <v-btn @click="update">
             編集
           </v-btn>
           <v-btn @click="remove(item.id)"> 削除 </v-btn>

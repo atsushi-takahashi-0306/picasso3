@@ -191,4 +191,5 @@ export default {
   border-radius: 3px;
   text-align: center;
 }
+
 </style>

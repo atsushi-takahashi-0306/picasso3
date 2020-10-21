@@ -91,7 +91,7 @@
       </v-container>
 
       <v-footer style="margin-top: 120px">
-        <v-col class="text-center pa-0"
+        <v-col class="text-center"
           ><span class="footer-txt"
             >&copy; {{ new Date().getFullYear() }}picasso</span
           ></v-col
